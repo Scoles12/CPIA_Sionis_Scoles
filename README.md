@@ -1,48 +1,4 @@
-# Image Super-Resolution via Iterative Refinement
-
-[Paper](https://arxiv.org/pdf/2104.07636.pdf ) |  [Project](https://iterative-refinement.github.io/ )
-
-## Brief
-
-This is an unofficial implementation of **Image Super-Resolution via Iterative Refinement(SR3)** by **Pytorch**.
-
-There are some implement details with paper description, which may be different from the actual `SR3` structure due to details missing.
-
-- We used the ResNet block and channel concatenation style like vanilla `DDPM`.
-- We used the attention mechanism in low-resolution features(16×16) like vanilla `DDPM`.
-- We encode the $\gamma$ as `FilM` structure did in `WaveGrad`, and embed it without affine transformation.
-- We define posterior variance as $ \dfrac{1-\gamma_{t-1}}{1-\gamma_{t}}  \beta_t $  rather than $\beta_t$,  which have the similar results in vanilla paper.
-
-**If you just want to upscale `64x64px` -> `512x512px` images using the pre-trained model, check out [this google colab script](https://colab.research.google.com/drive/1G1txPI1GKueKH0cSi_DgQFKwfyJOXlhY?usp=sharing).**
-
-## Status
-
-**★★★ NEW: Its follow-up [Palette-Image-to-Image-Diffusion-Models](https://arxiv.org/abs/2111.05826) is now available; See the details [here](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models) ★★★**
-
-### Conditional generation(super resolution)
-
-- [x] 16×16 -> 128×128 on FFHQ-CelebaHQ
-- [x] 64×64 -> 512×512 on FFHQ-CelebaHQ
-
-### Unconditional generation
-
-- [x] 128×128 face generation on FFHQ
-- [ ] ~~1024×1024 face generation by a cascade of 3 models~~
-
-### Training Step
-
-- [x] log / logger
-- [x] metrics evaluation
-- [x] multi-gpu support
-- [x] resume training / pretrained model
-- [x] validate alone script
-- [x] [Weights and Biases Logging](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/pull/44) 🌟 NEW
-
-
-
 ## Results
-
-*Note:*  We set the maximum reverse steps budget to 2000 now. Limited to model parameters in `Nvidia 1080Ti`, **image noise** and **hue deviation** occasionally appear in high-resolution images, resulting in low scores.  There is a lot of room to optimization.  **Welcome to any contributions for more extensive experiments and code enhancements.**
 
 | Tasks/Metrics        | SSIM(+) | PSNR(+) | FID(-)  | IS(+)   |
 | -------------------- | ----------- | -------- | ---- | ---- |
@@ -50,23 +6,6 @@ There are some implement details with paper description, which may be different 
 | 64×64 -> 512×512     | 0.445 | 19.87 | - | - |
 | 128×128 | - | - | | |
 | 1024×1024 | - | - |      |      |
-
-- #### 16×16 -> 128×128 on FFHQ-CelebaHQ [[More Results](https://drive.google.com/drive/folders/1Vk1lpHzbDf03nME5fV9a-lWzSh3kMK14?usp=sharing)]
-
-| <img src="./misc/sr_process_16_128_0.png" alt="show" style="zoom:90%;" /> |  <img src="./misc/sr_process_16_128_1.png" alt="show" style="zoom:90%;" />    |   <img src="./misc/sr_process_16_128_2.png" alt="show" style="zoom:90%;" />   |
-| ------------------------------------------------------------ | ---- | ---- |
-
-- #### 64×64 -> 512×512 on FFHQ-CelebaHQ [[More Results](https://drive.google.com/drive/folders/1yp_4xChPSZUeVIgxbZM-e3ZSsSgnaR9Z?usp=sharing)]
-
-| <img src="./misc/sr_64_512_0_inf.png" alt="show" style="zoom:90%;" /> | <img src="./misc/sr_64_512_0_sr.png" alt="show" style="zoom:90%;" /> | <img src="./misc/sr_64_512_0_hr.png" alt="show" style="zoom:90%;" /> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <img src="./misc/sr_64_512_1_sr.png" alt="show" style="zoom:90%;" /> | <img src="./misc/sr_64_512_2_sr.png" alt="show" style="zoom:90%;" /> | <img src="./misc/sr_64_512_3_sr.png" alt="show" style="zoom:90%;" /> |
-
-- #### 128×128 face generation on FFHQ [[More Results](https://drive.google.com/drive/folders/13AsjRwDw4wMmL0bK7wPd2rP7ds7eyAMh?usp=sharing)]
-
-| <img src="./misc/sample_process_128_0.png" alt="show" style="zoom:90%;" /> |  <img src="./misc/sample_process_128_1.png" alt="show" style="zoom:90%;" />    |   <img src="./misc/sample_process_128_2.png" alt="show" style="zoom:90%;" />   |
-| ------------------------------------------------------------ | ---- | ---- |
-
 
 
 ## Usage
@@ -201,24 +140,3 @@ W&B logging functionality is added to `sr.py`, `sample.py` and `infer.py` files.
 - `-log_infer`: While running `infer.py` pass this argument along with `-enable_wandb` to log the inference results as interactive W&B Tables. 
 
 You can find more on using these features [here](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement/pull/44). 🚀
-
-
-## Acknowledge
-
-Our work is based on the following theoretical works:
-
-- [Denoising Diffusion Probabilistic Models](https://arxiv.org/pdf/2006.11239.pdf)
-- [Image Super-Resolution via Iterative Refinement](https://arxiv.org/pdf/2104.07636.pdf)
-- [WaveGrad: Estimating Gradients for Waveform Generation](https://arxiv.org/abs/2009.00713)
-- [Large Scale GAN Training for High Fidelity Natural Image Synthesis](https://arxiv.org/abs/1809.11096)
-
-and we are benefiting a lot from the following projects:
-
-- https://github.com/bhushan23/BIG-GAN
-- https://github.com/lmnt-com/wavegrad
-- https://github.com/rosinality/denoising-diffusion-pytorch
-- https://github.com/lucidrains/denoising-diffusion-pytorch
-- https://github.com/hejingwenhejingwen/AdaFM
-
-
-
