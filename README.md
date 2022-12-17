@@ -1,3 +1,5 @@
+# This is copied from [Janspiry's Image-Super-Resolution-via-Iterative-Refinement](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement) repo, please go there instead, this repo is uniquely for a private project purposes
+
 ## Results
 
 | Tasks/Metrics        | SSIM(+) | PSNR(+) | FID(-)  | IS(+)   |
