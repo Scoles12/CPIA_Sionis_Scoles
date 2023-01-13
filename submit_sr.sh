@@ -2,7 +2,6 @@
 
 
 #SBATCH --job-name=submit_sr.sh
-#SBATCH -D . 
 #SBATCH --output=output.sh.o%j
 #SBATCH --error=output.sh.e%j
 
@@ -30,4 +29,4 @@ else
     fi
 fi
 
-python sr.py -p $2 -c path/sr_sr3_${SIZE}.json -enable_wandb -log_wandb_ckpt
+python sr.py -p $2 -c config/sr_sr3_${SIZE}.json #-enable_wandb -log_wandb_ckpt
