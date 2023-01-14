@@ -6,7 +6,7 @@ This repository is an implementation of the SR3 (Super-Resolution via Iterative 
 
 ## Prerequisites
 
-First of all you must clone this repository in a gpu-compatible device/server?:
+First of all you must clone this repository in a gpu-compatible device:
 ```python
 git clone https://github.com/Scoles12/CPIA_Sionis_Scoles.git
 ```
@@ -111,21 +111,9 @@ python sr.py -p val -c config/sr_sr3_16_128.json #-enable_wandb -log_wandb_ckpt
 python eval.py -p [result root]
 ```
 
-### Inference Alone
-
-Set the  image path like steps in `Own Data`, then run the script:
-
+Again, if you are using a Slurm based cluster you should run:
 ```python
-# run the script
-python infer.py -c [config file]
+# [small_size] must be either 16 (for 16x16 to 128x128) or 64 (for 64x64 to 512x512)
+submit_sr.sh [small_size] val
 ```
     
-    
-
-(HACE FALTA LO DE ABAJO?)
-
-W&B logging functionality is added to `sr.py`, `sample.py` and `infer.py` files. You can pass `-enable_wandb` to start logging.
-
-- `-log_wandb_ckpt`: Pass this argument along with `-enable_wandb` to save model checkpoints as [W&B Artifacts](https://docs.wandb.ai/guides/artifacts). Both `sr.py` and `sample.py` is enabled with model checkpointing. 
-- `-log_eval`: Pass this argument along with `-enable_wandb` to save the evaluation result as interactive [W&B Tables](https://docs.wandb.ai/guides/data-vis). Note that only `sr.py` is enabled with this feature. If you run `sample.py` in eval mode, the generated images will automatically be logged as image media panel. 
-- `-log_infer`: While running `infer.py` pass this argument along with `-enable_wandb` to log the inference results as interactive W&B Tables. 
