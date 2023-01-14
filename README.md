@@ -3,6 +3,8 @@
 ## Brief introduction
 This repository is an implementation of the SR3 (Super-Resolution via Iterative Refinement) a diffusion model described in C. Saharia's, et. al. paper [Image Super-Resolution via Iterative Refinement](https://arxiv.org/pdf/2104.07636v2.pdf), and, as stated above, a modifed repository inspired from [Janspiry's Image-Super-Resolution-via-Iterative-Refinement](https://github.com/Janspiry/Image-Super-Resolution-via-Iterative-Refinement) one.
 
+To run SR3 in Google Collab you can use [this notebook](https://colab.research.google.com/drive/1sKw0ouiejYAS6_JMw4igJe6y4jKJF0hO?usp=sharing)
+
 
 ## Prerequisites
 
