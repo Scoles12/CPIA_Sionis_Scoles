@@ -53,7 +53,7 @@ This will create, inside the output root, three subfolders:
 
 You can also use our own set which is already prepared inside the dataset folder.
 
-If you have used your own set of images yo must now change the dataset config in the file /config/sr_sr3_16_128.json (or _64_512_) to your data path: 
+If you have used your own set of images yo must now change the dataset config in the file /config/sr_sr3_16_128.json (or __64_512_) to your data path: 
 
 ```json
 "datasets": {
@@ -82,9 +82,9 @@ Alternatively, if you are using a Slurm managed cluster you can make use of the 
 submit_sr.sh [small_size] train
 ```
 
-To use wandb with this method of submiting the job, you must uncomment, in the sumbit_sr.sh file, both the login line and the -enable_wandb ... You also must substitute <API KEY> with your [API key](https://wandb.ai/authorize).
+To use wandb with this method of submiting the job, you must uncomment, in the sumbit_sr.sh file, both the login line and the "-enable_wandb ...". You also must substitute <API KEY> with your [API key](https://wandb.ai/authorize).
     
-To start the training from scratch make sure the "resume_state" property in the path config of /config/sr_sr3_16_128.json (or _64_512_) file is set to null. If you want to carry on from a previous checkpoint you must change this property to the path were the checkpoint is stored:
+To start the training from scratch make sure the "resume_state" property in the path config of /config/sr_sr3_16_128.json (or __64_512_) file is set to null. If you want to carry on from a previous checkpoint you must change this property to the path were the checkpoint is stored:
     
 ```json
 "path": { //set the path
