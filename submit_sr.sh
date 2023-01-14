@@ -1,10 +1,8 @@
 #!/bin/bash
 
-
 #SBATCH --job-name=submit_sr.sh
 #SBATCH --output=output.sh.o%j
 #SBATCH --error=output.sh.e%j
-
 
 USAGE="\n USAGE: ./submit_sr.sh small_size mode \n
         small_size      -> 16: 16-128; 64: 64-512\n
@@ -29,4 +27,5 @@ else
     fi
 fi
 
+#python -m wandb login <API KEY>
 python sr.py -p $2 -c config/sr_sr3_${SIZE}.json #-enable_wandb -log_wandb_ckpt
