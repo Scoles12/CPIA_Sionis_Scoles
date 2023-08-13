@@ -9,30 +9,30 @@
         "tb_logger": "tb_logger",
         "results": "results",
         "checkpoint": "checkpoint",
-        "resume_state": null
-        // "resume_state": "experiments/OUT_16_128_210806_204158/checkpoint/I640000_E37" //pretrain model or training state
+        // "resume_state": null
+        "resume_state": "experiments/OUT_16_128_230502_123127/checkpoint/I2000000_E150" //pretrain model or training state
     },
     "datasets": {
         "train": {
             "name": "Out_train",
             "mode": "HR", // whether need LR img
-            "dataroot": "dataset/input_16_128",
+            "dataroot": "/scratch/2/amanda/dataset/prueba_20",
             "datatype": "img", //lmdb or img, path of img files
             "l_resolution": 16, // low resolution need to super_resolution
             "r_resolution": 128, // high resolution
-            "batch_size": 4,
-            "num_workers": 8,
+            "batch_size": 1, //4 2
+            "num_workers": 2, //8 
             "use_shuffle": true,
             "data_len": -1 // -1 represents all data used in train
         },
         "val": {
             "name": "Out_val",
             "mode": "LRHR",
-            "dataroot": "dataset/input_val_16_128",
+            "dataroot": "/scratch/2/amanda/dataset/train_1", //input_test_16_128",
             "datatype": "img", //lmdb or img, path of img files
             "l_resolution": 16,
             "r_resolution": 128,
-            "data_len": -1 // data length in validation 
+            "data_len": 50 // data length in validation 
         }
     },
     "model": {
@@ -52,7 +52,7 @@
             "attn_res": [
                 16
             ],
-            "res_blocks": 2,
+            "res_blocks": 2, //2 3
             "dropout": 0.2
         },
         "beta_schedule": { // use munual beta_schedule for acceleration
@@ -76,10 +76,10 @@
         }
     },
     "train": {
-        "n_iter": 1000000,
-        "val_freq": 1e4,
-        "save_checkpoint_freq": 1e4,
-        "print_freq": 200,
+        "n_iter": 3000000,
+        "val_freq": 1e4, //1e4
+        "save_checkpoint_freq": 1e5,
+        "print_freq": 50000, //200
         "optimizer": {
             "type": "adam",
             "lr": 1e-4
